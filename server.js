@@ -25,7 +25,7 @@ const sess = {
 
 app.use(
 	cors({
-		origin: ["ht	tp://localhost:3000", "https://*.sse.codesandbox.io"],
+		origin: ["http://localhost:3000", "https://*.sse.codesandbox.io"],
 		credentials: true,
 	})
 );
