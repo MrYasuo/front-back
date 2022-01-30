@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../contexts";
+import { useNavigate } from "react-router-dom";
 
 export default function Form() {
+	const authContext = useContext(AuthContext);
+	const navigate = useNavigate();
 	const [data, setData] = useState({
 		uname: "",
 		passwd: "",
@@ -9,15 +13,19 @@ export default function Form() {
 		e.preventDefault();
 		fetch("http://localhost:8000", {
 			method: "POST",
-			mode: "cors",
 			headers: {
-				"Content-Type": "application/x-www-form-urlencoded",
+				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(data),
 			credentials: "include",
-			redirect: "follow",
+			body: JSON.stringify(data),
 		})
-			.then()
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.isLoggedIn) {
+					authContext.setUser(data.uname);
+					navigate("/protected", { replace: true });
+				} else alert("You are not logged in");
+			})
 			.catch();
 	};
 	return (
@@ -36,7 +44,7 @@ export default function Form() {
 				onChange={(e) =>
 					setData(Object.assign({}, data, { passwd: e.target.value }))
 				}></input>
-			<input type="submit" value="Submit"></input>
+			<input type="submit" value="Submit" onClick={handleSubmit}></input>
 		</form>
 	);
 }
