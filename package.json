@@ -1,0 +1,27 @@
+{
+	"name": "express-backend",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node server.js",
+		"dev": "concurrently -n server,client -c green,blue \"nodemon server.js\" \"cd client && npm start\""
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"argon2": "^0.28.3",
+		"connect-mongo": "^4.6.0",
+		"cors": "^2.8.5",
+		"express": "^4.17.2",
+		"express-session": "^1.17.2",
+		"mongoose": "^6.1.8",
+		"passport": "^0.5.2",
+		"passport-local": "^1.0.0"
+	},
+	"devDependencies": {
+		"concurrently": "^7.0.0",
+		"nodemon": "^2.0.15"
+	}
+}
