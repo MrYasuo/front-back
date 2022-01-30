@@ -23,12 +23,7 @@ const sess = {
 	}),
 };
 
-app.use(
-	cors({
-		origin: ["http://localhost:3000", "https://*.sse.codesandbox.io"],
-		credentials: true,
-	})
-);
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session(sess));

@@ -38,7 +38,6 @@ function RequireAuth({ children }) {
 	(async () => {
 		fetch("http://localhost:8000/credential", {
 			method: "POST",
-			credentials: "include",
 			headers: {
 				"Content-Type": "application/json",
 			},
